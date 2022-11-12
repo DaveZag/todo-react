@@ -1,33 +1,41 @@
-import { useState } from "react";
-import { FaRegTrashAlt } from "react-icons/fa";
-import styles from "./TodoItem.module.css";
+import { useState } from 'react';
+import { FaRegTrashAlt } from 'react-icons/fa';
+import PropTypes from 'prop-types';
 
-const TodoItem = ({ todo, handleChangeProps, deleteTodoProps, handleUpdateProps }) => {
+import styles from './TodoItem.module.css';
+
+const TodoItem = ({
+  todo,
+  handleChangeProps,
+  deleteTodoProps,
+  handleUpdateProps,
+}) => {
   const completedStyle = {
-    fontStyle: "italic",
-    color: "#595959",
+    fontStyle: 'italic',
+    color: '#595959',
     opacity: 0.4,
-    textDecoration: "line-through",
+    textDecoration: 'line-through',
   };
 
   const [editing, setEditing] = useState(false);
+
   const handleEditing = () => {
     setEditing(true);
   };
 
   const handleUpdateDone = (e) => {
-    if (e.key === "Enter") {
+    if (e.key === 'Enter') {
       setEditing(false);
     }
   };
 
-  let viewMode = {};
-  let editMode = {};
+  const viewMode = {};
+  const editMode = {};
 
   if (editing) {
-    viewMode.display = "none";
+    viewMode.display = 'none';
   } else {
-    editMode.display = "none";
+    editMode.display = 'none';
   }
 
   return (
@@ -42,8 +50,10 @@ const TodoItem = ({ todo, handleChangeProps, deleteTodoProps, handleUpdateProps 
         <button
           onClick={() => {
             deleteTodoProps(todo.id);
-          }}>
-          <FaRegTrashAlt style={{ color: "orangered", fontSize: "16px" }} />
+          }}
+          type="button"
+        >
+          <FaRegTrashAlt style={{ color: 'orangered', fontSize: '16px' }} />
         </button>
         <span style={todo.completed ? completedStyle : null}>{todo.title}</span>
       </div>
@@ -57,6 +67,17 @@ const TodoItem = ({ todo, handleChangeProps, deleteTodoProps, handleUpdateProps 
       />
     </li>
   );
+};
+
+TodoItem.propTypes = {
+  todo: PropTypes.shape({
+    id: PropTypes.number,
+    title: PropTypes.string,
+    completed: PropTypes.bool,
+  }).isRequired,
+  handleChangeProps: PropTypes.func.isRequired,
+  deleteTodoProps: PropTypes.func.isRequired,
+  handleUpdateProps: PropTypes.func.isRequired,
 };
 
 export default TodoItem;

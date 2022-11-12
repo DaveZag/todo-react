@@ -1,11 +1,14 @@
-import TodosList from "../components/TodosList";
-import Header from "../components/Header";
-import { useEffect, useState } from "react";
-import InputTodo from "../components/InputTodo";
+import { useEffect, useState } from 'react';
+import TodosList from '../components/TodosList';
+import Header from '../components/Header';
+import InputTodo from '../components/InputTodo';
 
 const Home = () => {
+  // Each todo is of the form:
+  // todo={id: number, title: string, completed: boolean}
+
   const getInitialTodos = () => {
-    const savedData = localStorage.getItem("todos");
+    const savedData = localStorage.getItem('todos');
     const parsedTodos = JSON.parse(savedData);
     return parsedTodos || [];
   };
@@ -14,7 +17,7 @@ const Home = () => {
 
   // Load todos from localStorage if any is found
   useEffect(() => {
-    const data = JSON.parse(localStorage.getItem("todos"));
+    const data = JSON.parse(localStorage.getItem('todos'));
     if (data) {
       setTodosArray(data);
     }
@@ -23,7 +26,7 @@ const Home = () => {
   // Save todosArray to local storage and track all changes made to it
   useEffect(() => {
     const data = JSON.stringify(todosArray);
-    localStorage.setItem("todos", data);
+    localStorage.setItem('todos', data);
   }, [todosArray]);
 
   // Store changes made to the checkboxes in the corresponding array object
@@ -53,24 +56,25 @@ const Home = () => {
 
   // Add todo in the todos array else return an error message
   const addTodo = (value) => {
-    if (value.trim()) {
-      setTodosArray([...todosArray, { id: Date.now(), title: value, completed: false }]);
+    if (value) {
+      setTodosArray([
+        ...todosArray,
+        { id: Date.now(), title: value.trim(), completed: false },
+      ]);
     } else {
-      alert("enter something");
+      alert('enter something');
     }
   };
 
   // Delete todo from the array
   const deleteTodo = (id) => {
     setTodosArray([
-      ...todosArray.filter((todo) => {
-        // Note that the spread operator created a brand new object
-        // thus we're not mutating the state directly
-
-        return todo.id !== id;
-      }),
+      // Note that the spread operator created a brand new object
+      // thus we're not mutating the state directly
+      ...todosArray.filter((todo) => todo.id !== id),
     ]);
   };
+
   return (
     <div className="container">
       <div className="inner">
