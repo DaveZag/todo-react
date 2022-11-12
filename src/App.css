@@ -1,4 +1,4 @@
-/*............. CSS RESETS ............... */
+/* ............. CSS RESETS ............... */
 *,
 *::before,
 *::after {
@@ -8,7 +8,7 @@
 }
 
 body {
-  font-family: "Segoe UI", Arial, sans-serif;
+  font-family: 'Segoe UI', Arial, sans-serif;
   line-height: 1.4;
   color: #444;
   background: #fff;
@@ -16,7 +16,13 @@ body {
 }
 
 a {
+  display: block;
+  padding: 10px 40px;
   text-decoration: none;
+  color: #000;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 1.3rem;
 }
 
 button {
@@ -62,16 +68,6 @@ button:hover {
 
 .menuNav.showMenu {
   width: 100%;
-}
-
-a {
-  display: block;
-  padding: 10px 40px;
-  text-decoration: none;
-  color: #000000;
-  text-transform: uppercase;
-  font-weight: bold;
-  font-size: 1.3rem;
 }
 
 .menuNav li:first-child {
@@ -131,13 +127,13 @@ a {
 }
 
 header h1 {
-  font-size: "6rem";
-  font-weight: "600";
-  margin-bottom: "2rem";
-  line-height: "1em";
-  color: "#ececec";
-  text-transform: "lowercase";
-  text-align: "center";
+  font-size: 6rem;
+  font-weight: 600;
+  margin-bottom: 2rem;
+  line-height: 1em;
+  color: #ececec;
+  text-transform: lowercase;
+  text-align: center;
 }
 
 .todo-list {
@@ -150,7 +146,7 @@ header h1 {
 .item {
   font-size: 1.2rem;
   list-style-type: none;
-  padding: 17px 0px;
+  padding: 17px 0;
   border-bottom: 1px solid #eaeaea;
 }
 
@@ -205,7 +201,6 @@ header h1 {
 .footer {
   display: flex;
   justify-content: center;
-  justify-content: center;
   position: fixed;
   bottom: 0;
   left: 0;
@@ -221,11 +216,11 @@ header h1 {
   padding: 0.3rem 0;
   color: rgb(66, 65, 65);
   font-size: 1rem;
-  font-family: "Inter", sans-serif;
+  font-family: 'Inter', sans-serif;
 }
 
 .footer span:hover {
-  color: #ff6600;
+  color: #f60;
 }
 
 .error {
